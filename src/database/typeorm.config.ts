@@ -10,7 +10,10 @@ export const typeOrmConfig = (): TypeOrmModuleOptions => {
     username: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASS || 'postgres',
     database: process.env.DB_NAME || 'ynov_db',
-    entities: [__dirname + '/../**/*.entity{.ts,.js}', __dirname + '/../**/*.schema{.ts,.js}'],
+    entities: [
+      __dirname + '/../**/*.entity{.ts,.js}',
+      __dirname + '/../**/*.schema{.ts,.js}',
+    ],
     synchronize: process.env.TYPEORM_SYNC === 'true',
     // useful for transient network issues
     retryAttempts: 5,

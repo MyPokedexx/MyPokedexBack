@@ -69,7 +69,7 @@ export class UserController {
   })
   @ApiResponse({ status: 404, description: 'Utilisateur non trouvé' })
   async getMe(@Request() req: AuthenticatedRequest): Promise<User> {
-    const user =  await this.userService.findById(req.user.sub);
+    const user = await this.userService.findById(req.user.sub);
     if (!user) throw new NotFoundException('Utilisateur non trouvé');
     return user as unknown as User;
   }

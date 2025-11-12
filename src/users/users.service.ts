@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
-import { CreateUserDto } from './dto/create_user.dto';
 import { UpdateUserDto } from './dto/update_user.dto';
 
 @Injectable()
@@ -43,7 +42,10 @@ export class UsersService {
 
   // Supprime un utilisateur par id (retourne l'utilisateur supprimé sans mot de passe)
   async delete(id: string): Promise<User | null> {
-    const deleted = await this.userModel.findByIdAndDelete(id).select('-password').exec();
+    const deleted = await this.userModel
+      .findByIdAndDelete(id)
+      .select('-password')
+      .exec();
     return deleted as unknown as User | null;
   }
 }
