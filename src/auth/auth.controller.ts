@@ -12,7 +12,12 @@ export class AuthController {
   @ApiOperation({ summary: 'Register a new user' })
   @ApiResponse({ status: 201, description: 'User created' })
   @Post('register')
-  async register(@Body() registerDto: RegisterDto) {
+  async register(@Body() registerDto: RegisterDto): Promise<{
+    _id?: string;
+    id?: string;
+    email: string;
+    name?: string;
+  }> {
     return this.authService.register(registerDto);
   }
 
